@@ -1,0 +1,9 @@
+name: DeluxeJoin
+version: '${project.version}'
+main: rama.dj.DeluxeJoin
+api-version: 1.17
+authors: [ ImRama ]
+description: Join events for your lobby network
+commands:
+  deluxejoin:
+    aliases: dj
