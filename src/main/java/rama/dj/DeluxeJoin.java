@@ -10,6 +10,7 @@ public final class DeluxeJoin extends JavaPlugin {
     public void onEnable() {
         this.saveDefaultConfig();
         Bukkit.getPluginManager().registerEvents(new PlayerJoinEventClass(this), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerQuitEventClass(this), this);
         Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&6[&eDeluxeJoin&6] &aPlugin enabled"));
         Bukkit.getPluginCommand("deluxejoin").setExecutor(new Commands(this));
     }

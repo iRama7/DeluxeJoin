@@ -7,11 +7,14 @@
 #  - [TITLEBROADCAST] - Send a title to all the players - add /subtitle for subtitle
 #  - [SOUNDMSG] - Play a sound to the player
 #  - [SOUNDBROADCAST] - Play a sound to all the players
+#  - [ACTIONBARMSG] - Send an action bar message to the player
+#  - [ACTIONBARBROADCAST] - Send an action bar message to all the players
 #Sounds from https://helpch.at/docs/1.17.1/org/bukkit/Sound.html
 #You can use %player% placeholder for the player name
 config:
   debug-mode: false
   disable-minecraft-join-message: true
+  disable-minecraft-quit-message: true
 join-actions:
   default:
     priority: 1
@@ -24,5 +27,18 @@ join-actions:
       - "[MESSAGE] &a&lVIP &a%player% &ehas joined the lobby"
       - "[SOUNDMSG] BLOCK_ANVIL_PLACE"
       - "[TITLEBROADCAST] &a&lVIP &a%player% /subtitle &ehas joined the lobby"
+    permission: deluxejoin.vip
+quit-actions:
+  default:
+    priority: 1
+    actions:
+      - "[MESSAGE] 67%player% &ehas left the lobby"
+    permission: deluxejoin.default
+  vip:
+    priority: 2
+    actions:
+      - "[MESSAGE] &a&lVIP &a%player% &ehas left the lobby"
+      - "[SOUNDMSG] BLOCK_ANVIL_PLACE"
+      - "[TITLEBROADCAST] &a&lVIP &a%player% /subtitle &ehas left the lobby"
     permission: deluxejoin.vip
 

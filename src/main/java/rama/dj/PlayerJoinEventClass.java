@@ -1,5 +1,7 @@
 package rama.dj;
 
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
@@ -132,6 +134,20 @@ public class PlayerJoinEventClass implements Listener {
                         //for each player online play sound
                         for(Player player : Bukkit.getOnlinePlayers()) {
                             player.playSound(player.getLocation(), Sound.valueOf(soundBroadcast), 1, 1);
+                        }
+                        break;
+                    case "ACTIONBARMSG":
+                        //get the string without "[ACTIONBARMSG]"
+                        String actionbar = a.replace("[ACTIONBARMSG] ", "").replaceAll("%player%", p.getName());
+                        //send actionbar message to the player
+                        p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(colorized(actionbar)));
+                        break;
+                    case "ACTIONBARBROADCAST":
+                        //get the string without "[ACTIONBARBROADCAST]"
+                        String actionbarBroadcast = a.replace("[ACTIONBARBROADCAST] ", "").replaceAll("%player%", p.getName());
+                        //for each player online send actionbar message
+                        for (Player player : Bukkit.getOnlinePlayers()) {
+                            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(colorized(actionbarBroadcast)));
                         }
                         break;
                     default:
