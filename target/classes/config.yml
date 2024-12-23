@@ -1,0 +1,56 @@
+config:
+  debug: false
+  disable-minecraft-messages: true #Disable Minecraft default join/quit messages?
+groups:
+  default:
+    weight: 0
+    permission: deluxejoin.default
+    join-actions:
+      1:
+        type: MESSAGE
+        broadcast: true #Send message to all players?
+        delay: 20 #Delay in ticks for the action to execute.
+        message: "&7%player_name% &ehas joined the lobby." #Hex colors and PaPi variables supported.
+    quit-actions:
+      1:
+        type: MESSAGE
+        broadcast: true
+        message: "&7%player_name% &ehas left the lobby."
+  vip:
+    weight: 1
+    permission: deluxejoin.vip
+    join-actions:
+      1:
+        type: MESSAGE
+        broadcast: true
+        delay: 20
+        message: "&a&lVIP &a%player_name% &ehas joined the lobby."
+      2:
+        type: TITLE
+        broadcast: true
+        title: "&a&lVIP &a%player_name%"
+        subtitle: "&ehas joined the lobby"
+        times:
+          fadeIn: 20
+          stay: 20
+          fadeOut: 20
+      3:
+        type: SOUND
+        broadcast: true
+        sound: ENTITY_PLAYER_LEVELUP #https://jd.papermc.io/paper/1.21.4/org/bukkit/Sound.html
+        volume: 1.0
+        pitch: 1.0
+      4:
+        type: COMMAND
+        delay: 20
+        executor: CONSOLE #CONSOLE/PLAYER
+        command: "say hi" #Command without "/"
+      5:
+        type: ACTIONBAR
+        delay: 20
+        message: "&cWELCOME!"
+    quit-actions:
+      1:
+        type: MESSAGE
+        broadcast: true
+        message: "&a&lVIP &a%player_name% &ehas left the lobby."

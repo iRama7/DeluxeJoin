@@ -1,0 +1,10 @@
+name: DeluxeJoin
+version: '1.0'
+main: me.rama.deluxeJoin.DeluxeJoin
+api-version: '1.21'
+load: STARTUP
+authors: [ ImRama ]
+description: Enhance your server with creative and customizable join messages, offering new ways to welcome players!
+softdepend: ["PlaceholderAPI"]
+commands:
+  dj:
