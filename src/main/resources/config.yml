@@ -1,44 +1,59 @@
-#Valid actions:
-#  - [MESSAGE] - Send a message to the player
-#  - [COMMAND] - Execute a command as the player
-#  - [CONSOLE] - Send a command as the console
-#  - [BROADCAST] - Send a message to all players
-#  - [TITLEMSG] - Send a title to the player - add /subtitle for subtitle
-#  - [TITLEBROADCAST] - Send a title to all the players - add /subtitle for subtitle
-#  - [SOUNDMSG] - Play a sound to the player
-#  - [SOUNDBROADCAST] - Play a sound to all the players
-#  - [ACTIONBARMSG] - Send an action bar message to the player
-#  - [ACTIONBARBROADCAST] - Send an action bar message to all the players
-#Sounds from https://helpch.at/docs/1.17.1/org/bukkit/Sound.html
-#You can use %player% placeholder for the player name
 config:
-  debug-mode: false
-  disable-minecraft-join-message: true
-  disable-minecraft-quit-message: true
-join-actions:
+  debug: false
+  disable-minecraft-messages: true #Disable Minecraft default join/quit messages?
+groups:
   default:
-    priority: 1
-    actions:
-      - "[MESSAGE] 67%player% &ehas joined the lobby"
+    weight: 0
     permission: deluxejoin.default
+    join-actions:
+      1:
+        type: MESSAGE
+        broadcast: true #Send message to all players?
+        delay: 20 #Delay in ticks for the action to execute.
+        message: "&7%player_name% &ehas joined the lobby." #Hex colors and PaPi variables supported.
+    quit-actions:
+      1:
+        type: MESSAGE
+        broadcast: true
+        message: "&7%player_name% &ehas left the lobby."
   vip:
-    priority: 2
-    actions:
-      - "[MESSAGE] &a&lVIP &a%player% &ehas joined the lobby"
-      - "[SOUNDMSG] BLOCK_ANVIL_PLACE"
-      - "[TITLEBROADCAST] &a&lVIP &a%player% /subtitle &ehas joined the lobby"
+    weight: 1
     permission: deluxejoin.vip
-quit-actions:
-  default:
-    priority: 1
-    actions:
-      - "[MESSAGE] 67%player% &ehas left the lobby"
-    permission: deluxejoin.default
-  vip:
-    priority: 2
-    actions:
-      - "[MESSAGE] &a&lVIP &a%player% &ehas left the lobby"
-      - "[SOUNDMSG] BLOCK_ANVIL_PLACE"
-      - "[TITLEBROADCAST] &a&lVIP &a%player% /subtitle &ehas left the lobby"
-    permission: deluxejoin.vip
-
+    join-actions:
+      1:
+        type: MESSAGE
+        broadcast: true
+        delay: 20
+        message: "&a&lVIP &a%player_name% &ehas joined the lobby."
+      2:
+        type: TITLE
+        broadcast: true
+        delay: 20
+        title: "&a&lVIP &a%player_name%"
+        subtitle: "&ehas joined the lobby"
+        times:
+          fadeIn: 20
+          stay: 20
+          fadeOut: 20
+      3:
+        type: SOUND
+        broadcast: true
+        delay: 20
+        sound: ENTITY_PLAYER_LEVELUP #https://jd.papermc.io/paper/1.21.4/org/bukkit/Sound.html
+        volume: 1.0
+        pitch: 1.0
+      4:
+        type: COMMAND
+        delay: 20
+        executor: CONSOLE #CONSOLE/PLAYER
+        command: "say hi" #Command without "/"
+      5:
+        type: ACTIONBAR
+        delay: 20
+        message: "&cWELCOME!"
+    quit-actions:
+      1:
+        type: MESSAGE
+        broadcast: true
+        delay: 20
+        message: "&a&lVIP &a%player_name% &ehas left the lobby."

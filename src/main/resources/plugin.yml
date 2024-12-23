@@ -1,9 +1,10 @@
 name: DeluxeJoin
-version: '${project.version}'
-main: rama.dj.DeluxeJoin
-api-version: 1.17
+version: '1.0'
+main: me.rama.deluxeJoin.DeluxeJoin
+api-version: '1.21'
+load: STARTUP
 authors: [ ImRama ]
-description: Join events for your lobby network
+description: Enhance your server with creative and customizable join messages, offering new ways to welcome players!
+softdepend: ["PlaceholderAPI"]
 commands:
-  deluxejoin:
-    aliases: dj
+  dj:
